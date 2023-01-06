@@ -16,38 +16,37 @@ ipcRenderer.on('SET_SOURCE', async (event) => {
     }
   })
   
-  // HANDLE AUDIO ONLY, GET AUDIO VOLUME DATA
   function handleStream (stream) {
-    console.log(stream)
+    var audioCtx = new AudioContext();
+    var src = audioCtx.createMediaStreamSource(stream);
+    var analyser = audioCtx.createAnalyser();
 
-    var context = new AudioContext();
-    var src = context.createMediaStreamSource(stream);
-    var analyser = context.createAnalyser();
-
-    analyser.fftSize = 512;
-    const bufferLength = analyser.frequencyBinCount;
+    analyser.fftSize = 64;
     let frequencyArr = new Uint8Array(analyser.frequencyBinCount);
 
     src.connect(analyser);
-
-    analyser.getByteFrequencyData(frequencyArr);
-    console.log(frequencyArr);
-    console.log(frequencyArr.filter(frequency => frequency>0));
-    console.log(stream.getTracks()[0].enabled)
-
-    setInterval(realtimeFrequencyData, 1, frequencyArr, analyser);
-
-    // for video output
-    // const video = document.querySelector('video')
-    // video.srcObject = stream
-    // video.onloadedmetadata = (e) => video.play()
+    setInterval(realtimeFrequencyData, 0, frequencyArr, analyser);
   }
-
-  
 
   function realtimeFrequencyData(frequencyArr, analyser)
   {
     analyser.getByteFrequencyData(frequencyArr);
-    console.log(frequencyArr);
-    console.log(frequencyArr.filter(frequency => frequency>0));
+    visualizeDataToCanvas(frequencyArr);
+  }
+
+  function visualizeDataToCanvas(dataArr)
+  {
+    var canvas = document.getElementById("canvas");
+    var ctx = canvas.getContext("2d");
+    
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.moveTo(0, 0);
+    ctx.beginPath();
+
+    for(w = 0; w < dataArr.length; w++){ 
+      ctx.lineTo(w*2, dataArr[w])
+    } 
+
+    ctx.stroke();
+    
   }
