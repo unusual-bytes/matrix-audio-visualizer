@@ -1,25 +1,14 @@
 const { ipcRenderer } = require('electron')
 
-ipcRenderer.on('SET_SOURCE', async (event, sourceId) => {
+const constraints = {
+  audio: { mandatory: { chromeMediaSource: 'desktop' } },
+  video: { mandatory: { chromeMediaSource: 'desktop' } }
+}
+
+ipcRenderer.on('SET_SOURCE', async (event) => {
     console.log("received")
 
-    const constraints = {
-      audio: {
-        mandatory: {
-          chromeMediaSource: 'desktop',
-          chromeMediaSourceId: sourceId
-        }
-      },
-      video: {
-        mandatory: {
-          chromeMediaSource: 'desktop',
-          chromeMediaSourceId: sourceId
-        }
-      }
-    }
-
     try {
-        console.log(`tryin with ${sourceId}`)
       const stream = await navigator.mediaDevices.getUserMedia(constraints)
       handleStream(stream)
     } catch (e) {
