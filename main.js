@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain, desktopCapturer, webContents } = require('electron')
+const { app, BrowserWindow, ipcMain } = require('electron')
 const path = require('path')
 
 const createWindow = () => {
@@ -12,6 +12,7 @@ const createWindow = () => {
   })
 
   win.loadFile('index.html')
+
   win.webContents.on('did-finish-load', () => {
     win.webContents.send('SET_SOURCE')
   })
