@@ -1,6 +1,5 @@
 const { app, BrowserWindow, ipcMain, desktopCapturer, webContents } = require('electron')
 const path = require('path')
-const startAudioRecorder = require('./audio');
 
 let sourceID;
 
@@ -39,7 +38,3 @@ app.whenReady().then(() => {
 app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') app.quit()
   })
-
-ipcMain.on('start-recording', (event, arg) => {
-  startAudioRecorder()
-})
