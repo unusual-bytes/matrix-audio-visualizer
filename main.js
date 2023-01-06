@@ -1,5 +1,6 @@
 const { app, BrowserWindow, ipcMain } = require('electron')
 const path = require('path')
+const startSerial = require('./handle-serial');
 
 const createWindow = () => {
   const win = new BrowserWindow({
@@ -22,9 +23,10 @@ const createWindow = () => {
 // You can wait for this event by using the app.whenReady() API and calling createWindow() once its promise is fulfilled.
 app.whenReady().then(() => {
   createWindow()
+  startSerial(`COM3`);
 })
 
 // Quit the app when all windows are closed (Windows & Linux)
 app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') app.quit()
-  })
+})

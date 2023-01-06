@@ -14,7 +14,7 @@ ipcRenderer.on('SET_SOURCE', async (event) => {
     } catch (e) { 
       console.log(e) 
     }
-  })
+})
   
   function handleStream (stream) {
     var audioCtx = new AudioContext();
