@@ -1,31 +1,26 @@
 const { ipcRenderer } = require('electron')
 
-// Handle the button press and then tell the backend (main process) to act on the button press
-// document.getElementById('startRecordBTN').addEventListener('click', () =>{
-//     ipcRenderer.send('start-recording')
-// })
-
-ipcRenderer.on('ping', (event, message) => {
-    console.log(message) // Prints 'whoooooooh!'
-  })
-
-ipcRenderer.on('SET_SOURCE', (event, sourceId) => {
+ipcRenderer.on('SET_SOURCE', async (event, sourceId) => {
     console.log("received")
-    try {
-        console.log("tryin")
-      const stream = navigator.mediaDevices.getUserMedia({
-        audio: false,
-        video: {
-          mandatory: {
-            chromeMediaSource: 'desktop',
-            chromeMediaSourceId: sourceId.message,
-            minWidth: 1280,
-            maxWidth: 1280,
-            minHeight: 720,
-            maxHeight: 720
-          }
+
+    const constraints = {
+      audio: {
+        mandatory: {
+          chromeMediaSource: 'desktop',
+          chromeMediaSourceId: sourceId
         }
-      })
+      },
+      video: {
+        mandatory: {
+          chromeMediaSource: 'desktop',
+          chromeMediaSourceId: sourceId
+        }
+      }
+    }
+
+    try {
+        console.log(`tryin with ${sourceId}`)
+      const stream = await navigator.mediaDevices.getUserMedia(constraints)
       handleStream(stream)
     } catch (e) {
       handleError(e)
@@ -33,9 +28,8 @@ ipcRenderer.on('SET_SOURCE', (event, sourceId) => {
   })
   
   function handleStream (stream) {
-    console.log("handleStream called")
+    console.log(stream)
     const video = document.querySelector('video')
-    //video.src = URL.createObjectURL(stream)
     video.srcObject = stream
     video.onloadedmetadata = (e) => video.play()
   }

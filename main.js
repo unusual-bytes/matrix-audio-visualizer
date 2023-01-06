@@ -2,6 +2,8 @@ const { app, BrowserWindow, ipcMain, desktopCapturer, webContents } = require('e
 const path = require('path')
 const startAudioRecorder = require('./audio');
 
+let sourceID;
+
 const createWindow = () => {
   const win = new BrowserWindow({
     width: 800,
@@ -15,10 +17,8 @@ const createWindow = () => {
   desktopCapturer.getSources({ types: ['window', 'screen'] }).then(async sources => {
     for (const source of sources) {
       if (source.name === 'Entire Screen' || 'Screen 1') {
-        webContents.getAllWebContents().forEach(webContents => {
-          console.log("sendin")
-          webContents.send('SET_SOURCE', { message: '${source.id}'})
-        })
+        console.log("should send")
+          sourceID = source.id;
         return
       }
     }
@@ -26,7 +26,7 @@ const createWindow = () => {
 
   win.loadFile('index.html')
   win.webContents.on('did-finish-load', () => {
-    win.webContents.send('ping', 'whoooooooh!')
+    win.webContents.send('SET_SOURCE', sourceID)
   })
 }
 // In Electron, BrowserWindows can only be created after the app module's ready event is fired. 
