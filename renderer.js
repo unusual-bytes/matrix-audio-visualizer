@@ -1,9 +1,13 @@
 const { ipcRenderer } = require('electron')
 
+const handleSerial = require('./handle-serial');
+
 const constraints = {
   audio: { mandatory: { chromeMediaSource: 'desktop' } },
   video: { mandatory: { chromeMediaSource: 'desktop' } }
 }
+
+const delay = ms => new Promise(res => setTimeout(res, ms));
 
 ipcRenderer.on('SET_SOURCE', async (event) => {
     try {
@@ -25,13 +29,19 @@ ipcRenderer.on('SET_SOURCE', async (event) => {
     let frequencyArr = new Uint8Array(analyser.frequencyBinCount);
 
     src.connect(analyser);
-    setInterval(realtimeFrequencyData, 0, frequencyArr, analyser);
+    loopDat(realtimeFrequencyData, frequencyArr, analyser);
+  }
+
+  async function loopDat(realtimeFrequencyData, frequencyArr, analyser){
+    await delay(3000);
+    setInterval(realtimeFrequencyData, 50, frequencyArr, analyser);
   }
 
   function realtimeFrequencyData(frequencyArr, analyser)
   {
     analyser.getByteFrequencyData(frequencyArr);
     visualizeDataToCanvas(frequencyArr);
+    ipcRenderer.send('SEND-SERIAL', frequencyArr);
   }
 
   function visualizeDataToCanvas(dataArr)
