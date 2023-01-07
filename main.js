@@ -22,7 +22,7 @@ const createWindow = () => {
 // You can wait for this event by using the app.whenReady() API and calling createWindow() once its promise is fulfilled.
 app.whenReady().then(() => {
   createWindow()
-  handleSerial.startSerial(`COM3`);
+  handleSerial.startSerial(`COM6`);
 })
 
 // Quit the app when all windows are closed (Windows & Linux)
