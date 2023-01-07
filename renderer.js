@@ -29,12 +29,7 @@ ipcRenderer.on('SET_SOURCE', async (event) => {
     let frequencyArr = new Uint8Array(analyser.frequencyBinCount);
 
     src.connect(analyser);
-    loopDat(realtimeFrequencyData, frequencyArr, analyser);
-  }
-
-  async function loopDat(realtimeFrequencyData, frequencyArr, analyser){
-    await delay(3000);
-    setInterval(realtimeFrequencyData, 50, frequencyArr, analyser);
+    setInterval(realtimeFrequencyData, 0, frequencyArr, analyser);
   }
 
   function realtimeFrequencyData(frequencyArr, analyser)

@@ -6,7 +6,7 @@ let handledSerial = false;
 module.exports = {
 
   startSerial: function startSerial(portPath){
-    const port = new SerialPort({ path: portPath, baudRate: 9600, lock: false })
+    const port = new SerialPort({ path: 'COM6', baudRate: 115200, lock: false })
     global.port = port;
     parser = new ReadlineParser()
     port.pipe(parser)
@@ -18,7 +18,7 @@ module.exports = {
   sendDataOverSerial: function sendDataOverSerial(dataArr){
     if(handledSerial) {
       if(global.port != null) {
-        global.port.write('test', function(err) {
+        global.port.write('test\n', function(err) {
           if (err) {
             return console.log('Error on write: ', err.message)
           }
@@ -34,4 +34,3 @@ module.exports = {
 function checkForDataReceive(){
   if(parser != null) parser.on('data', console.log)
 }
-
