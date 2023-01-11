@@ -32,7 +32,7 @@ ipcRenderer.on('SET_SOURCE', async (event) => {
     setInterval(realtimeFrequencyData, 0, frequencyArr, analyser);
   }
 
-  function realtimeFrequencyData(frequencyArr, analyser)
+  function realtimeFrequencyData(frequencyArr, analyser) // TODO: Fix: All frequencies under ~900Hz get grouped in the first few values. Elements like 808s and kicks as well as parts of the melody get missed and shown all in one group of pixels (just 3 pixels on the LED matrix).
   {
     analyser.getByteFrequencyData(frequencyArr);
     visualizeDataToCanvas(frequencyArr);

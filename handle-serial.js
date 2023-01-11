@@ -24,7 +24,13 @@ module.exports = {
           isAudioQuiet = true;
         } else {
           let msg = [];
-          dataArr.forEach(e => msg.push(scale(e, 0, 255, 0, 8)))
+
+          // if using LEDMatrixDriver
+          dataArr.slice().reverse().forEach(e => msg.push(scale(e, 0, 255, 0, 7))) 
+
+          // if using MD_MAX72xx
+          // dataArr.forEach(e => msg.push(scale(e, 0, 255, 0, 7))) 
+          
           msg = msg.toString().replaceAll(',', '')
           global.port.write(`${msg}\n`) // TODO: send data in bytes instead
           isAudioQuiet = false;
