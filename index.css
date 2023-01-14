@@ -32,35 +32,44 @@ nav {
     top: 40px;
 }
 
-#title-text {
-    color: #E7AB79;
+#title-text-div {
+    position: absolute;
+    width: 100%;
+    bottom: 1%;
+    text-align: right;
+}
+
+#title-text{
+    margin-right: 10px;
+    color: #4c3a51a9;
 }
 
 #settings-page-button {
     position:absolute;
     z-index: 6;
-    left: 300px;
+    left: 0px;
     width: 150px;
     height: 100%;
     -webkit-app-region: no-drag;
     background-color: #774360;
     color: #E7AB79;
     border: none;
-    display: inline-block;
+    border-radius: 5px 5px 0 0;
+    font-size: 19px;
 }
 
 #effects-page-button {
     position:absolute;
     z-index: 6;
-    left: 450px;
+    left: 150px;
     width: 150px;
     height: 100%;
     -webkit-app-region: no-drag;
     background-color: #4C3A51;
     color: #E7AB79;
     border: none;
-    border-radius: 52px;
-    display: inline-block;
+    border-radius: 5px 5px 0 0;
+    font-size: 19px;
 }
 
 #exit-button {
@@ -80,4 +89,10 @@ nav {
 #configure-port {
     margin: auto;
     width: 50%;
+}
+
+#connect-button{
+    background-color: #4C3A51;
+    color: #E7AB79;
+    border: none;
 }
