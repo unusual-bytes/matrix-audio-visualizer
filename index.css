@@ -5,10 +5,12 @@
 #E7AB79 
 */
 
-html { overflow-y: hidden; }
+html { overflow-y: hidden; height: 100%;}
 
 body {
     background-color: #774360;
+    height: 100%;
+    /* -webkit-app-region: drag; */
 }
 
 nav {
@@ -25,8 +27,40 @@ nav {
     -webkit-app-region: drag;
 }
 
+#contents {
+    position: relative;
+    top: 40px;
+}
+
 #title-text {
     color: #E7AB79;
+}
+
+#settings-page-button {
+    position:absolute;
+    z-index: 6;
+    left: 300px;
+    width: 150px;
+    height: 100%;
+    -webkit-app-region: no-drag;
+    background-color: #774360;
+    color: #E7AB79;
+    border: none;
+    display: inline-block;
+}
+
+#effects-page-button {
+    position:absolute;
+    z-index: 6;
+    left: 450px;
+    width: 150px;
+    height: 100%;
+    -webkit-app-region: no-drag;
+    background-color: #4C3A51;
+    color: #E7AB79;
+    border: none;
+    border-radius: 52px;
+    display: inline-block;
 }
 
 #exit-button {
@@ -41,4 +75,9 @@ nav {
     z-index: 6;
     right:40px;
     -webkit-app-region: no-drag;
+}
+
+#configure-port {
+    margin: auto;
+    width: 50%;
 }
