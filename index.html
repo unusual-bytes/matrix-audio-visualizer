@@ -11,10 +11,23 @@
       http-equiv="X-Content-Security-Policy"
       content="default-src 'self'; script-src 'self'"
     />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Arduino LED Matrix</title>
+
+    <!-- Bulma CSS -->
+    <link rel="stylesheet" href="node_modules/bulma/css/bulma.css">
+    
+    <link rel="stylesheet" href="index.css">
   </head>
   <body>
-    <canvas id="canvas" height="160" width="640"></canvas>
+    <nav>
+      <h1 id="title-text" class="title">Matrix Visualizer</h1>
+      <button id="exit-button" class="delete is-large"></button>
+      <button id="minimize-button" class="delete is-large"></button>
+    </nav>
+    <canvas id="audioVisualizerCanvas" height="160" width="640"></canvas>
+    
   </body>
   <script src="./renderer.js"></script>
+  <script src="./titlebar.js"></script>
 </html>

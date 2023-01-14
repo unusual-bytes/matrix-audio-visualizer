@@ -1,10 +1,13 @@
 const { app, BrowserWindow, ipcMain } = require('electron')
 const handleSerial = require('./handle-serial');
 
+var win;
+
 const createWindow = () => {
-  const win = new BrowserWindow({
+  win = new BrowserWindow({
     width: 800,
     height: 600,
+    frame: false,
     webPreferences: {
       nodeIntegration:true,
       contextIsolation: false,
@@ -35,3 +38,11 @@ ipcMain.on('SEND-SERIAL', (event, data) => {
   handleSerial.sendDataOverSerial(data);
 })
 
+ipcMain.on('CLOSE-APP', (event) => {
+  win.close();
+  app.quit();
+})
+
+ipcMain.on('MINIMIZE-APP', (event) => {
+  win.minimize();
+})
