@@ -95,7 +95,7 @@ nav {
     -webkit-app-region: no-drag;
 }
 
-#configure-port-div, #port-status-div {
+#configure-port-div, #port-status-div, #audiovisualizer-div {
     margin: auto;
     width: 49%;
     height: 180px;

@@ -46,7 +46,9 @@ module.exports = {
         console.log("waiting for global.port")
       }
     }
-  }
+  },
+
+  getAvailablePorts: getAvailablePorts = () => { return SerialPort.list() }
 }
 
 function checkForDataReceive(){

@@ -62,6 +62,20 @@ const openEffectsPage = () => {
 // DROPDOWN
 
 const dropdown = document.querySelector('.dropdown');
+const dropdownContents = document.getElementById('dropdown-content');
+
+setPorts();
+
+async function setPorts(){
+  const options = await handleSerial.getAvailablePorts();
+
+  for(i = 0; i < options.length; i++) {
+    var el = document.createElement("a");
+    el.textContent = options[i].friendlyName;
+    el.className = "dropdown-item"
+    dropdownContents.appendChild(el);
+  }
+}
 
 dropdown.addEventListener('click', function(event) {
   event.stopPropagation();
