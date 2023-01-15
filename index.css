@@ -13,6 +13,14 @@ body {
     /* -webkit-app-region: drag; */
 }
 
+:not(input):not(textarea),
+:not(input):not(textarea)::after,
+:not(input):not(textarea)::before {
+    -webkit-user-select: none;
+    user-select: none;
+    cursor: default;
+}
+
 nav {
     z-index: 5;
     background-color: #4C3A51;
@@ -30,6 +38,7 @@ nav {
 #contents {
     position: relative;
     top: 40px;
+    height: 100%;
 }
 
 #title-text-div {
@@ -86,12 +95,31 @@ nav {
     -webkit-app-region: no-drag;
 }
 
-#configure-port {
+#configure-port-div, #port-status-div {
     margin: auto;
-    width: 50%;
+    width: 49%;
+    height: 180px;
+    border: 1px;
+    border-style:none;
+    background-color: #733f5c;
+    border-radius: 15px;
+    margin-top: 20px;;
 }
 
-#connect-button{
+#configure-buttons-div {
+    position: relative;
+    margin-left: 20px;
+    top: 10%;
+}
+
+#configure-text, #status-title-text {
+    position: relative;
+    color:#E7AB79;
+    top: 15px;
+    margin-left: 20px;
+}
+
+#connect-button {
     background-color: #4C3A51;
     color: #E7AB79;
     border: none;

@@ -29,9 +29,11 @@
     </nav>
 
     <div id="contents">
-      <div><canvas id="audioVisualizerCanvas" height="160" width="640"></canvas></div>
+      <!-- <div><canvas id="audioVisualizerCanvas" height="160" width="640"></canvas></div> -->
 
-      <div id="configure-port"> <center>
+      <div id="configure-port-div">
+        <h1 id="configure-text" class="title is-5">Configure Port:</h1>
+        <div id="configure-buttons-div">
       <div class="dropdown">
         <div class="dropdown-trigger">
           <button id="dropdown-button" class="button" aria-haspopup="true" aria-controls="dropdown-menu">
@@ -59,7 +61,11 @@
       </div>
     </div>
     <button id="connect-button" class="button is-primary">CONNECT</button>
-  </center></div>
+  </div>
+</div>
+<div id="port-status-div">
+  <h1 id="status-title-text" class="title is-5">Port Status:</h1>
+</div>
   </div>
 
   </body>
