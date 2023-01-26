@@ -69,16 +69,19 @@ const openEffectsPage = () => {
 // ----------------------------------------------------------------
 
 // DROPDOWN
-const dropdown = document.querySelector(".dropdown");
+const dropdowns = document.querySelectorAll(".dropdown");
 const dropdownContentPorts = document.getElementById("dropdown-content-ports");
 const dropdownContentEffects = document.getElementById("dropdown-content-fx");
 
-const dropdownButtonSpan = document.getElementById("dropdown-button-span");
+const dropdownSpanPorts = document.getElementById("dropdown-button-span-ports");
+const dropdownSpanEffects = document.getElementById("dropdown-button-span-fx");
 const statusText = document.getElementById("status-text");
 
 const connectButton = document.getElementById("connect-button");
+const applyButton = document.getElementById("apply-button");
 
-let selectedPort = null;
+let selectedPort,
+  selectedEffect = null;
 
 setPorts();
 
@@ -94,7 +97,7 @@ async function setPorts() {
 
     el.addEventListener("click", function (event) {
       selectedPort = el.value;
-      dropdownButtonSpan.textContent = selectedPort;
+      dropdownSpanPorts.textContent = selectedPort;
     });
   }
 }
@@ -108,17 +111,42 @@ const connectToPort = () => {
   }
 };
 
-dropdown.addEventListener("click", function (event) {
-  event.stopPropagation();
-  dropdown.classList.toggle("is-active");
-});
+for (const dropdown of dropdowns) {
+  dropdown.addEventListener("click", function (event) {
+    event.stopPropagation();
+    dropdown.classList.toggle("is-active");
+  });
+}
 
 connectButton.addEventListener("click", function (event) {
   connectToPort();
 });
 
 window.onclick = function (event) {
-  if (!event.target.matches(".dropdown")) {
-    dropdown.classList.remove("is-active");
-  }
+  if (!event.target.matches(".dropdown"))
+    for (const dropdown of dropdowns) dropdown.classList.remove("is-active");
 };
+
+// EFFECTS DROPDOWN
+const effectsList = require("./effects");
+
+for (i = 0; i < Object.keys(effectsList).length; i++) {
+  let el = document.createElement("div");
+  let elText = document.createElement("div");
+  let elDesc = document.createElement("a");
+  elText.textContent = Object.values(effectsList)[i].title;
+  el.value = Object.keys(effectsList)[i];
+  el.className = "dropdown-item";
+
+  elDesc.textContent = ` | ${Object.values(effectsList)[i].description}`;
+  elDesc.id = "dropdown-item-desc";
+
+  dropdownContentEffects.appendChild(el);
+  el.appendChild(elText);
+  el.appendChild(elDesc);
+
+  el.addEventListener("click", function (event) {
+    selectedEffect = el.value;
+    dropdownSpanEffects.textContent = selectedEffect;
+  });
+}

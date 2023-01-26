@@ -136,7 +136,8 @@ nav {
   margin-left: 20px;
 }
 
-#connect-button {
+#connect-button,
+#apply-button {
   background-color: #4c3a51;
   color: #e7ab79;
   border: none;
@@ -147,4 +148,8 @@ nav {
   top: 40px;
   height: 100%;
   width: 100%;
+}
+
+#dropdown-item-desc {
+  font-size: 10px;
 }
