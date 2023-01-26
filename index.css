@@ -5,129 +5,146 @@
 #E7AB79 
 */
 
-html { overflow-y: hidden; height: 100%;}
+html {
+  overflow-y: hidden;
+  height: 100%;
+}
 
 body {
-    background-color: #774360;
-    height: 100%;
-    /* -webkit-app-region: drag; */
+  background-color: #774360;
+  height: 100%;
+  /* -webkit-app-region: drag; */
 }
 
 :not(input):not(textarea),
 :not(input):not(textarea)::after,
 :not(input):not(textarea)::before {
-    -webkit-user-select: none;
-    user-select: none;
-    cursor: default;
+  -webkit-user-select: none;
+  user-select: none;
+  cursor: default;
 }
 
 nav {
-    z-index: 5;
-    background-color: #4C3A51;
-    height: 40px;
-    width: 100vw;
-    position: fixed;
-    top: 0;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    -webkit-app-region: drag;
+  z-index: 5;
+  background-color: #4c3a51;
+  height: 40px;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  -webkit-app-region: drag;
 }
 
 #settings-contents {
-    position: relative;
-    top: 40px;
-    height: 100%;
+  position: relative;
+  top: 40px;
+  height: 100%;
 }
 
 #title-text-div {
-    position: absolute;
-    width: 100%;
-    bottom: 1%;
-    text-align: right;
+  position: absolute;
+  width: 100%;
+  bottom: 1%;
+  text-align: right;
 }
 
-#title-text{
-    margin-right: 10px;
-    color: #4c3a51a9;
+#title-text {
+  margin-right: 10px;
+  color: #4c3a51a9;
 }
 
 #settings-page-button {
-    position:absolute;
-    z-index: 6;
-    left: 0px;
-    width: 150px;
-    height: 100%;
-    -webkit-app-region: no-drag;
-    background-color: #774360;
-    color: #E7AB79;
-    border: none;
-    border-radius: 5px 5px 0 0;
-    font-size: 19px;
+  position: absolute;
+  z-index: 6;
+  left: 0px;
+  width: 150px;
+  height: 100%;
+  -webkit-app-region: no-drag;
+  background-color: #774360;
+  color: #e7ab79;
+  border: none;
+  border-radius: 5px 5px 0 0;
+  font-size: 19px;
 }
 
 #effects-page-button {
-    position:absolute;
-    z-index: 6;
-    left: 150px;
-    width: 150px;
-    height: 100%;
-    -webkit-app-region: no-drag;
-    background-color: #4C3A51;
-    color: #E7AB79;
-    border: none;
-    border-radius: 5px 5px 0 0;
-    font-size: 19px;
+  position: absolute;
+  z-index: 6;
+  left: 150px;
+  width: 150px;
+  height: 100%;
+  -webkit-app-region: no-drag;
+  background-color: #4c3a51;
+  color: #e7ab79;
+  border: none;
+  border-radius: 5px 5px 0 0;
+  font-size: 19px;
 }
 
 #exit-button {
-    position:absolute;
-    z-index: 6;
-    right:5px;
-    -webkit-app-region: no-drag;
+  position: absolute;
+  z-index: 6;
+  right: 5px;
+  -webkit-app-region: no-drag;
 }
 
 #minimize-button {
-    position:absolute;
-    z-index: 6;
-    right:40px;
-    -webkit-app-region: no-drag;
+  position: absolute;
+  z-index: 6;
+  right: 40px;
+  -webkit-app-region: no-drag;
 }
 
-#configure-port-div, #port-status-div, #audiovisualizer-div {
-    margin: auto;
-    width: 49%;
-    height: 180px;
-    border: 1px;
-    border-style:none;
-    background-color: #733f5c;
-    border-radius: 15px;
-    margin-top: 20px;;
+#configure-port-div,
+#port-status-div,
+#effects-div {
+  margin: auto;
+  width: 49%;
+  height: 180px;
+  border: 1px;
+  border-style: none;
+  background-color: #733f5c;
+  border-radius: 15px;
+  margin-top: 20px;
 }
 
-#configure-buttons-div {
-    position: relative;
-    margin-left: 20px;
-    top: 10%;
+#port-status-div {
+  height: 82px;
+}
+#status-text {
+  position: relative;
+  color: #e7ab79;
+  margin-left: 20px;
 }
 
-#configure-text, #status-title-text {
-    position: relative;
-    color:#E7AB79;
-    top: 15px;
-    margin-left: 20px;
+#configure-buttons-div,
+#configure-effects-div {
+  position: relative;
+  margin-left: 20px;
+  top: 10%;
+}
+
+#configure-text,
+#status-title-text,
+#choose-effect-text {
+  position: relative;
+  color: #e7ab79;
+  top: 15px;
+  margin-left: 20px;
 }
 
 #connect-button {
-    background-color: #4C3A51;
-    color: #E7AB79;
-    border: none;
+  background-color: #4c3a51;
+  color: #e7ab79;
+  border: none;
 }
 
 #effects-contents {
-    position: absolute;
-    top: 40px;
-    height: 100%;
-    width: 100%;
+  position: absolute;
+  top: 40px;
+  height: 100%;
+  width: 100%;
 }

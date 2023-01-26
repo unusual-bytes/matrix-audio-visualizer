@@ -34,7 +34,6 @@ function handleStream(stream) {
 function realtimeFrequencyData(frequencyArr, analyser) {
   // TODO: Fix: All frequencies under ~900Hz get grouped in the first few values. Elements like 808s and kicks as well as parts of the melody get missed and shown all in one group of pixels (just 3 pixels on the LED matrix).
   analyser.getByteFrequencyData(frequencyArr);
-  visualizeDataToCanvas(frequencyArr);
 
   const binnedArray = [];
   const binSize = frequencyArr.length / 48;
@@ -63,19 +62,4 @@ function realtimeFrequencyData(frequencyArr, analyser) {
   }
 
   ipcRenderer.send("SEND-SERIAL", binnedArray);
-}
-
-function visualizeDataToCanvas(dataArr) {
-  var canvas = document.getElementById("audioVisualizerCanvas");
-  var ctx = canvas.getContext("2d");
-
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.moveTo(0, 0);
-  ctx.beginPath();
-
-  for (w = 0; w < dataArr.length; w++) {
-    ctx.lineTo(w * 2, dataArr[w]);
-  }
-
-  ctx.stroke();
 }

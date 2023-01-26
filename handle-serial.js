@@ -1,4 +1,4 @@
-const { SerialPort, ReadlineParser } = require("serialport");
+const { SerialPort, ReadlineParser, ipcRenderer } = require("serialport");
 
 var parser = null;
 let isAudioQuiet = false;
@@ -15,13 +15,16 @@ module.exports = {
       global.port = port;
       parser = new ReadlineParser();
       port.pipe(parser);
+
+      handledSerial = true;
       port.on("error", function (err) {
-        console.log("Error: ", err.message);
         handledSerial = false;
+        console.log("Error: ", err.message);
       });
       checkForDataReceive();
-      handledSerial = true;
     }
+    console.log(handledSerial);
+    module.exports.hasConnected = handledSerial.toString();
   },
 
   sendDataOverSerial: function sendDataOverSerial(dataArr) {

@@ -70,8 +70,11 @@ const openEffectsPage = () => {
 
 // DROPDOWN
 const dropdown = document.querySelector(".dropdown");
-const dropdownContents = document.getElementById("dropdown-content");
+const dropdownContentPorts = document.getElementById("dropdown-content-ports");
+const dropdownContentEffects = document.getElementById("dropdown-content-fx");
+
 const dropdownButtonSpan = document.getElementById("dropdown-button-span");
+const statusText = document.getElementById("status-text");
 
 const connectButton = document.getElementById("connect-button");
 
@@ -87,7 +90,7 @@ async function setPorts() {
     el.textContent = options[i].friendlyName;
     el.value = options[i].path;
     el.className = "dropdown-item";
-    dropdownContents.appendChild(el);
+    dropdownContentPorts.appendChild(el);
 
     el.addEventListener("click", function (event) {
       selectedPort = el.value;
@@ -98,8 +101,8 @@ async function setPorts() {
 
 const connectToPort = () => {
   if (selectedPort !== null) {
-    console.log(handleSerial.handledSerial);
     ipcRenderer.send("START-SERIAL", selectedPort);
+    statusText.textContent = handleSerial.hasConnected;
   } else {
     alert("No port selected");
   }
