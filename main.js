@@ -39,6 +39,7 @@ ipcMain.on("START-SERIAL", (event, port) => {
 
 ipcMain.on("SEND-SERIAL", (event, data) => {
   handleSerial.sendDataOverSerial(data);
+  win.webContents.send("SET_MATRIX", data);
 });
 
 ipcMain.on("CLOSE-APP", (event) => {
