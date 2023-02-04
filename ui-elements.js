@@ -155,11 +155,20 @@ for (i = 0; i < Object.keys(effectsList).length; i++) {
   });
 }
 
-applyButton.addEventListener("click", () =>
+applyButton.addEventListener("click", () => applyEffects());
+
+function applyEffects() {
   analyser.setCurrentEffect(
     selectedEffect,
     controlGlowCheckbox.checked,
     upsideDownCheckbox.checked,
     fillCheckbox.checked
-  )
-);
+  );
+
+  ipcRenderer.send(
+    "SET-VISUALIZER-SETTINGS",
+    controlGlowCheckbox.checked,
+    upsideDownCheckbox.checked,
+    fillCheckbox.checked
+  );
+}

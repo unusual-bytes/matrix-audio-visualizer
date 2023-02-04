@@ -18,17 +18,17 @@ module.exports = {
     setInterval(realtimeFrequencyData, 0, frequencyArr, analyser);
   },
 
-  setCurrentEffect: function setCurrentEffect(
+  setCurrentEffect: (setCurrentEffect = (
     setEffect,
     setControlGlow,
     setUpsideDown,
     setFill
-  ) {
+  ) => {
     currentEffect = setEffect;
     controlGlow = setControlGlow;
     upsideDown = setUpsideDown;
     fill = setFill;
-  },
+  }),
 };
 
 function realtimeFrequencyData(frequencyArr, analyser) {

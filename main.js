@@ -47,6 +47,13 @@ ipcMain.on("SEND-SERIAL", (event, data, upsideDown) => {
   win.webContents.send("SET_MATRIX", data, upsideDown);
 });
 
+ipcMain.on(
+  "SET-VISUALIZER-SETTINGS",
+  (event, controlGlow, upsideDown, fill) => {
+    handleSerial.setVisualizerSettings(controlGlow, upsideDown, fill);
+  }
+);
+
 ipcMain.on("CLOSE-APP", (event) => {
   win.close();
   app.quit();

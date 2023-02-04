@@ -29,7 +29,7 @@ module.exports = {
 
   sendDataOverSerial: function sendDataOverSerial(dataArr, upsideDown) {
     if (handledSerial) {
-      if (global.port != null) {
+      if (global.port != null || global.port != undefined) {
         if (dataArr.every((v) => v === 0)) {
           if (!isAudioQuiet) global.port.write(`0`);
           isAudioQuiet = true;
@@ -66,6 +66,25 @@ module.exports = {
       } else {
         console.log("waiting for global.port");
       }
+    }
+  },
+
+  setVisualizerSettings: function setVisualizerSettings(
+    setControlGlow,
+    setUpsideDown,
+    setFill
+  ) {
+    if (global.port != null || global.port != undefined) {
+      if (setControlGlow) global.port.write(`c1\n`);
+      else global.port.write(`c0\n`);
+
+      if (setUpsideDown) global.port.write(`u1\n`);
+      else global.port.write(`u0\n`);
+
+      if (setFill) global.port.write(`f1\n`);
+      else global.port.write(`f0\n`);
+    } else {
+      console.log("waiting for global.port");
     }
   },
 
