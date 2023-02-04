@@ -26,27 +26,31 @@ function realtimeFrequencyData(frequencyArr, analyser) {
   const binnedArray = [];
   const binSize = frequencyArr.length / 48;
 
-  // average value
-  // for (let i = 0; i < 32; i++) {
-  //   const start = i * binSize;
-  //   const end = start + binSize;
-  //   const bin = frequencyArr.slice(start, end);
-  //   const nonZeroValues = bin.filter((value) => value !== 0);
-  //   let binnedValue = 0;
-  //   if (nonZeroValues.length > 0) {
-  //     binnedValue =
-  //       nonZeroValues.reduce((a, b) => a + b) / nonZeroValues.length;
-  //   }
-  //   binnedArray.push(binnedValue);
-  // }
+  if (currentEffect == "vis1") {
+    // max value
+    for (let i = 0; i < 32; i++) {
+      const start = i * binSize;
+      const end = start + binSize;
+      const bin = frequencyArr.slice(start, end);
 
-  // max value
-  for (let i = 0; i < 32; i++) {
-    const start = i * binSize;
-    const end = start + binSize;
-    const bin = frequencyArr.slice(start, end);
+      binnedArray.push(Math.max.apply(Math, bin));
+    }
+  }
 
-    binnedArray.push(Math.max.apply(Math, bin));
+  if (currentEffect == "vis2") {
+    // average value
+    for (let i = 0; i < 32; i++) {
+      const start = i * binSize;
+      const end = start + binSize;
+      const bin = frequencyArr.slice(start, end);
+      const nonZeroValues = bin.filter((value) => value !== 0);
+      let binnedValue = 0;
+      if (nonZeroValues.length > 0) {
+        binnedValue =
+          nonZeroValues.reduce((a, b) => a + b) / nonZeroValues.length;
+      }
+      binnedArray.push(binnedValue);
+    }
   }
 
   ipcRenderer.send("SEND-SERIAL", binnedArray);
