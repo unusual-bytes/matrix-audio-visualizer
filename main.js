@@ -42,9 +42,9 @@ ipcMain.on("START-SERIAL", (event, port) => {
   handleSerial.startSerial(port);
 });
 
-ipcMain.on("SEND-SERIAL", (event, data, upsideDown) => {
+ipcMain.on("SEND-SERIAL", (event, data, upsideDown, fill) => {
   handleSerial.sendDataOverSerial(data, upsideDown);
-  win.webContents.send("SET_MATRIX", data, upsideDown);
+  win.webContents.send("SET_MATRIX", data, upsideDown, fill);
 });
 
 ipcMain.on(

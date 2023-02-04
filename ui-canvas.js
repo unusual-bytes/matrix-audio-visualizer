@@ -42,7 +42,7 @@ let setMatrix = true;
 ipcRenderer.on("IS_FOCUS", (event, isFocused) => {
   setMatrix = isFocused;
 }),
-  ipcRenderer.on("SET_MATRIX", (event, data, upsideDown) => {
+  ipcRenderer.on("SET_MATRIX", (event, data, upsideDown, fill) => {
     if (setMatrix) {
       let msg = [];
 
@@ -55,7 +55,15 @@ ipcRenderer.on("IS_FOCUS", (event, isFocused) => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       drawMatrixBase(matrixWidth, matrixHeight);
       for (x = 0; x < msg.length; x++) {
-        writePixel(x, 7 - msg[x], matrixWidth, matrixHeight);
+        if (fill && upsideDown) {
+          for (y = msg[x]; y < 8; y++)
+            writePixel(x, 7 - y, matrixWidth, matrixHeight);
+        } else if (fill && !upsideDown) {
+          for (y = msg[x]; y >= 0; y--)
+            writePixel(x, 7 - y, matrixWidth, matrixHeight);
+        } else if (!fill) {
+          writePixel(x, 7 - msg[x], matrixWidth, matrixHeight);
+        }
       }
     }
   });

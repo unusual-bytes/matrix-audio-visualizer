@@ -64,5 +64,5 @@ function realtimeFrequencyData(frequencyArr, analyser) {
     }
   }
 
-  ipcRenderer.send("SEND-SERIAL", binnedArray, upsideDown);
+  ipcRenderer.send("SEND-SERIAL", binnedArray, upsideDown, fill);
 }
