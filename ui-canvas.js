@@ -42,11 +42,12 @@ let setMatrix = true;
 ipcRenderer.on("IS_FOCUS", (event, isFocused) => {
   setMatrix = isFocused;
 }),
-  ipcRenderer.on("SET_MATRIX", (event, data) => {
+  ipcRenderer.on("SET_MATRIX", (event, data, upsideDown) => {
     if (setMatrix) {
       let msg = [];
 
-      data.forEach((e) => msg.push(scale(e, 0, 255, 0, 7)));
+      if (upsideDown) data.forEach((e) => msg.push(scale(e, 0, 255, 7, 0)));
+      else data.forEach((e) => msg.push(scale(e, 0, 255, 0, 7)));
 
       msg = msg.toString().replaceAll(",", "");
 

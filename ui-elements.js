@@ -80,6 +80,10 @@ const statusText = document.getElementById("status-text");
 const connectButton = document.getElementById("connect-button");
 const applyButton = document.getElementById("apply-button");
 
+const controlGlowCheckbox = document.getElementById("control-glow-check");
+const upsideDownCheckbox = document.getElementById("upside-down-check");
+const fillCheckbox = document.getElementById("fill-check");
+
 let selectedPort,
   selectedEffect = null;
 
@@ -152,5 +156,10 @@ for (i = 0; i < Object.keys(effectsList).length; i++) {
 }
 
 applyButton.addEventListener("click", () =>
-  analyser.setCurrentEffect(selectedEffect)
+  analyser.setCurrentEffect(
+    selectedEffect,
+    controlGlowCheckbox.checked,
+    upsideDownCheckbox.checked,
+    fillCheckbox.checked
+  )
 );

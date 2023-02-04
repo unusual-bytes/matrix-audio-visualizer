@@ -1,4 +1,7 @@
 let currentEffect = "vis1";
+let controlGlow,
+  upsideDown,
+  fill = false;
 
 module.exports = {
   handleStream: function handleStream(stream) {
@@ -15,8 +18,16 @@ module.exports = {
     setInterval(realtimeFrequencyData, 0, frequencyArr, analyser);
   },
 
-  setCurrentEffect: function setCurrentEffect(setEffect) {
+  setCurrentEffect: function setCurrentEffect(
+    setEffect,
+    setControlGlow,
+    setUpsideDown,
+    setFill
+  ) {
     currentEffect = setEffect;
+    controlGlow = setControlGlow;
+    upsideDown = setUpsideDown;
+    fill = setFill;
   },
 };
 
@@ -53,5 +64,5 @@ function realtimeFrequencyData(frequencyArr, analyser) {
     }
   }
 
-  ipcRenderer.send("SEND-SERIAL", binnedArray);
+  ipcRenderer.send("SEND-SERIAL", binnedArray, upsideDown);
 }

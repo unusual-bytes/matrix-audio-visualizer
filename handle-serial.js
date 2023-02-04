@@ -27,7 +27,7 @@ module.exports = {
     module.exports.hasConnected = handledSerial.toString();
   },
 
-  sendDataOverSerial: function sendDataOverSerial(dataArr) {
+  sendDataOverSerial: function sendDataOverSerial(dataArr, upsideDown) {
     if (handledSerial) {
       if (global.port != null) {
         if (dataArr.every((v) => v === 0)) {
@@ -37,10 +37,18 @@ module.exports = {
           let msg = [];
 
           // if using LEDMatrixDriver
-          dataArr
-            .slice()
-            .reverse()
-            .forEach((e) => msg.push(scale(e, 0, 255, 0, 7)));
+
+          if (upsideDown) {
+            dataArr
+              .slice()
+              .reverse()
+              .forEach((e) => msg.push(scale(e, 0, 255, 7, 0)));
+          } else {
+            dataArr
+              .slice()
+              .reverse()
+              .forEach((e) => msg.push(scale(e, 0, 255, 0, 7)));
+          }
 
           // Low Frequencies spectrum, with fftSize to 512
           // for(i = 4; i < 36; i++){
