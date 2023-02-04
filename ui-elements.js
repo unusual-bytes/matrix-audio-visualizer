@@ -150,3 +150,7 @@ for (i = 0; i < Object.keys(effectsList).length; i++) {
     dropdownSpanEffects.textContent = selectedEffect;
   });
 }
+
+applyButton.addEventListener("click", () =>
+  analyser.setCurrentEffect(selectedEffect)
+);

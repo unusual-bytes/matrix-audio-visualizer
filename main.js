@@ -20,15 +20,20 @@ const createWindow = () => {
   win.webContents.on("did-finish-load", () => {
     win.webContents.send("SET_SOURCE");
   });
+
+  win.on("focus", () => {
+    win.webContents.send("IS_FOCUS", true);
+  });
+
+  win.on("blur", () => {
+    win.webContents.send("IS_FOCUS", false);
+  });
 };
 
-// In Electron, BrowserWindows can only be created after the app module's ready event is fired.
-// You can wait for this event by using the app.whenReady() API and calling createWindow() once its promise is fulfilled.
 app.whenReady().then(() => {
   createWindow();
 });
 
-// Quit the app when all windows are closed (Windows & Linux)
 app.on("window-all-closed", () => {
   if (process.platform !== "darwin") app.quit();
 });

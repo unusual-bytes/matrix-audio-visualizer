@@ -1,3 +1,5 @@
+let currentEffect = "vis1";
+
 module.exports = {
   handleStream: function handleStream(stream) {
     var audioCtx = new AudioContext();
@@ -12,11 +14,15 @@ module.exports = {
     src.connect(analyser);
     setInterval(realtimeFrequencyData, 0, frequencyArr, analyser);
   },
+
+  setCurrentEffect: function setCurrentEffect(setEffect) {
+    currentEffect = setEffect;
+  },
 };
 
 function realtimeFrequencyData(frequencyArr, analyser) {
   analyser.getByteFrequencyData(frequencyArr);
-
+  console.log(currentEffect);
   const binnedArray = [];
   const binSize = frequencyArr.length / 48;
 

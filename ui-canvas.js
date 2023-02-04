@@ -37,20 +37,27 @@ module.exports = visualizeAudio = (msgArr) => {
 drawMatrixBase(matrixWidth, matrixHeight);
 //for (i = 0; i < 32; i++) writePixel(i, 7, matrixWidth, matrixHeight);
 
-ipcRenderer.on("SET_MATRIX", (event, data) => {
-  let msg = [];
+let setMatrix = true;
 
-  data.forEach((e) => msg.push(scale(e, 0, 255, 0, 7)));
+ipcRenderer.on("IS_FOCUS", (event, isFocused) => {
+  setMatrix = isFocused;
+}),
+  ipcRenderer.on("SET_MATRIX", (event, data) => {
+    if (setMatrix) {
+      let msg = [];
 
-  msg = msg.toString().replaceAll(",", "");
+      data.forEach((e) => msg.push(scale(e, 0, 255, 0, 7)));
 
-  console.log(msg);
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  drawMatrixBase(matrixWidth, matrixHeight);
-  for (x = 0; x < msg.length; x++) {
-    writePixel(x, 7 - msg[x], matrixWidth, matrixHeight);
-  }
-});
+      msg = msg.toString().replaceAll(",", "");
+
+      //console.log(msg);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      drawMatrixBase(matrixWidth, matrixHeight);
+      for (x = 0; x < msg.length; x++) {
+        writePixel(x, 7 - msg[x], matrixWidth, matrixHeight);
+      }
+    }
+  });
 
 function scale(number, inMin, inMax, outMin, outMax) {
   return parseInt(

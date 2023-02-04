@@ -112,6 +112,10 @@ nav {
   margin-top: 20px;
 }
 
+#effects-div {
+  height: 250px;
+}
+
 #visualizer-div {
   width: 80%;
 }

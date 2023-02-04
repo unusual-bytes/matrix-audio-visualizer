@@ -1,17 +1,15 @@
 const effects = {
   vis1: {
     title: "Audio Visualizer 1",
-    description: "Audio Visualizer using fftsize of 64",
+    description: "fftsize of 64",
   },
   vis2: {
     title: "Audio Visualizer 2",
-    description:
-      "Audio Visualizer using fftsize of 2048 and storing it in a binned array of 32 values with each value being the highest value of the bin",
+    description: "fftsize of 2048, highest value out of 32 values",
   },
   vis3: {
     title: "Audio Visualizer 3",
-    description:
-      "Audio Visualizer using fftsize of 2048 and storing it in a binned array of 32 values with each value being an average of the values in the bin",
+    description: "fftsize of 2048, average value out of 32 values",
   },
   clock: {
     title: "Clock",
