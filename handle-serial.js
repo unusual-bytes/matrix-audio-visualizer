@@ -42,19 +42,13 @@ module.exports = {
             dataArr
               .slice()
               .reverse()
-              .forEach((e) => msg.push(scale(e, 0, 255, 7, 0)));
+              .forEach((e) => msg.push(scale(e, 0, 1, 7, 0)));
           } else {
             dataArr
               .slice()
               .reverse()
-              .forEach((e) => msg.push(scale(e, 0, 255, 0, 7)));
+              .forEach((e) => msg.push(scale(e, 0, 1, 0, 7)));
           }
-
-          // Low Frequencies spectrum, with fftSize to 512
-          // for(i = 4; i < 36; i++){
-          //   msg.push(scale(dataArr[i], 0, 255, 0, 7));
-          // }
-          //msg.split("").reverse().join("")
 
           // if using MD_MAX72xx
           // dataArr.forEach(e => msg.push(scale(e, 0, 255, 0, 7)))
