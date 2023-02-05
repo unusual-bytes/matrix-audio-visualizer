@@ -53,8 +53,23 @@ module.exports = {
           // if using MD_MAX72xx
           // dataArr.forEach(e => msg.push(scale(e, 0, 255, 0, 7)))
 
+          let averageAudioLevel = (isUpsideDown) => {
+            if (isUpsideDown)
+              return (averageAudioLevel = parseInt(
+                msg.reduce((a, b) => a + scale(b, 0, 7, 7, 0), 0) / msg.length
+              ));
+            else
+              return (averageAudioLevel = parseInt(
+                msg.reduce((a, b) => a + b, 0) / msg.length
+              ));
+          };
+
+          if (global.controlGlow)
+            global.port.write(`b${averageAudioLevel(upsideDown)}\n`);
+
           msg = msg.toString().replaceAll(",", "");
           global.port.write(`${msg}\n`); // TODO: send data in bytes instead
+
           isAudioQuiet = false;
         }
       } else {
@@ -69,8 +84,14 @@ module.exports = {
     setFill
   ) {
     if (global.port != null || global.port != undefined) {
-      if (setControlGlow) global.port.write(`c1\n`);
-      else global.port.write(`c0\n`);
+      global.controlGlow = setControlGlow;
+
+      if (setControlGlow) {
+        global.port.write(`c1\n`);
+      } else {
+        global.port.write(`c0\n`);
+        global.port.write(`b0\n`); // set brightness to 0 (default)
+      }
 
       if (setUpsideDown) global.port.write(`u1\n`);
       else global.port.write(`u0\n`);
