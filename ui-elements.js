@@ -85,7 +85,7 @@ const upsideDownCheckbox = document.getElementById("upside-down-check");
 const fillCheckbox = document.getElementById("fill-check");
 
 let selectedPort,
-  selectedEffect = null;
+  selectedEffect = "vis1";
 
 setPorts();
 
