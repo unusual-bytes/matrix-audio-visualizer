@@ -1,8 +1,8 @@
 const { SerialPort, ReadlineParser, ipcRenderer } = require("serialport");
 
 var parser = null;
-let isAudioQuiet = false;
-let handledSerial = false;
+let isAudioQuiet,
+  handledSerial = false;
 
 module.exports = {
   startSerial: function startSerial(portPath) {

@@ -132,7 +132,7 @@ window.onclick = function (event) {
 };
 
 // EFFECTS DROPDOWN
-const effectsList = require("./effects");
+const effectsList = require("./effects/effects-list.js");
 
 for (i = 0; i < Object.keys(effectsList).length; i++) {
   let el = document.createElement("div");

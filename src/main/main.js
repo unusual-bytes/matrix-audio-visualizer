@@ -1,5 +1,5 @@
 const { app, BrowserWindow, ipcMain } = require("electron");
-const handleSerial = require("./handle-serial");
+const handleSerial = require("../handle-serial");
 
 var win;
 
@@ -15,7 +15,7 @@ const createWindow = () => {
     },
   });
 
-  win.loadFile("index.html");
+  win.loadFile("src/index.html");
 
   win.webContents.on("did-finish-load", () => {
     win.webContents.send("SET_SOURCE");

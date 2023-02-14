@@ -11,10 +11,6 @@ const effects = {
     title: "Audio Visualizer 3",
     description: "20 Hz - 12726 Hz",
   },
-  clock: {
-    title: "Clock",
-    description: "A clock effect that takes the clock time from your computer",
-  },
 };
 
 module.exports = effects;

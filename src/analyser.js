@@ -1,4 +1,4 @@
-const AudioMotionAnalyzer = require("./audioMotion-analyzer/audioMotion-analyzer");
+const AudioMotionAnalyzer = require("./external-modules/audioMotion-analyzer/audioMotion-analyzer");
 
 let currentEffect = "vis1";
 let controlGlow,
@@ -10,7 +10,6 @@ module.exports = {
     let frequencyArr;
 
     const audioMotion = new AudioMotionAnalyzer(null, {
-      //audioCtx: audioCtx,
       useCanvas: false,
       fftSize: 2048,
       //minDecibels: -130,
