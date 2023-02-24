@@ -129,6 +129,12 @@ nav {
   margin-left: 20px;
 }
 
+#effect-description-text {
+  position: relative;
+  color: #e7ab79;
+  margin-top: 10px;
+}
+
 #configure-buttons-div,
 #configure-effects-div,
 #visualizer-canvas-div {
@@ -158,10 +164,6 @@ nav {
   top: 40px;
   height: 100%;
   width: 100%;
-}
-
-#dropdown-item-desc {
-  font-size: 10px;
 }
 
 #visualizer-canvas {

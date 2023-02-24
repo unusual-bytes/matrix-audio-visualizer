@@ -134,24 +134,28 @@ window.onclick = function (event) {
 // EFFECTS DROPDOWN
 const effectsList = require("./effects/effects-list.js");
 
+// default description for default selected effect vis1
+const effectDescText = document.getElementById("effect-description-text");
+effectDescText.textContent = Object.values(effectsList)[0].description;
+
 for (i = 0; i < Object.keys(effectsList).length; i++) {
   let el = document.createElement("div");
   let elText = document.createElement("div");
-  let elDesc = document.createElement("a");
   elText.textContent = Object.values(effectsList)[i].title;
   el.value = Object.keys(effectsList)[i];
   el.className = "dropdown-item";
 
-  elDesc.textContent = ` | ${Object.values(effectsList)[i].description}`;
-  elDesc.id = "dropdown-item-desc";
-
   dropdownContentEffects.appendChild(el);
   el.appendChild(elText);
-  el.appendChild(elDesc);
 
   el.addEventListener("click", function (event) {
     selectedEffect = el.value;
     dropdownSpanEffects.textContent = selectedEffect;
+
+    // find the selected effect in the effects list object and get its description
+    for (const [key, value] of Object.entries(effectsList)) {
+      if (key == selectedEffect) effectDescText.textContent = value.description;
+    }
   });
 }
 
