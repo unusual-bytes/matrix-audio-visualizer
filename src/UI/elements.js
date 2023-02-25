@@ -19,11 +19,16 @@ const settingsPage = document.getElementById("settings-contents");
 const effectsPageButton = document.getElementById("effects-page-button");
 const effectsPage = document.getElementById("effects-contents");
 
+const fxBuilderPageButton = document.getElementById("fxBuilder-page-button");
+const fxBuilderPage = document.getElementById("fxBuilder-contents");
+
 let settingsActive = true,
-  effectsActive;
+  effectsActive,
+  fxBuilderActive;
 
 settingsPageButton.addEventListener("click", () => openSettingsPage());
 effectsPageButton.addEventListener("click", () => openEffectsPage());
+fxBuilderPageButton.addEventListener("click", () => openFxBuilderPage());
 
 settingsPageButton.addEventListener("mouseenter", () =>
   enableHoverColor(settingsPageButton, settingsActive)
@@ -37,6 +42,12 @@ effectsPageButton.addEventListener("mouseenter", () =>
 effectsPageButton.addEventListener("mouseleave", () =>
   disableHoverColor(effectsPageButton, effectsActive)
 );
+fxBuilderPageButton.addEventListener("mouseenter", () =>
+  enableHoverColor(fxBuilderPageButton, fxBuilderActive)
+);
+fxBuilderPageButton.addEventListener("mouseleave", () =>
+  disableHoverColor(fxBuilderPageButton, fxBuilderActive)
+);
 
 const enableHoverColor = (buttonElement, buttonBool) => {
   if (!buttonBool) buttonElement.style.backgroundColor = "#7743608a";
@@ -48,22 +59,46 @@ const disableHoverColor = (buttonElement, buttonBool) => {
 const openSettingsPage = () => {
   settingsPageButton.style.backgroundColor = "#774360";
   effectsPageButton.style.backgroundColor = "#4C3A51";
+  fxBuilderPageButton.style.backgroundColor = "#4C3A51";
 
   settingsPage.removeAttribute("hidden");
   effectsPage.setAttribute("hidden", "");
+  fxBuilderPage.setAttribute("hidden", "");
+
+  fxBuilderPageButton.setAttribute("hidden", "");
 
   settingsActive = true;
   effectsActive = false;
+  fxBuilderActive = false;
 };
 const openEffectsPage = () => {
   settingsPageButton.style.backgroundColor = "#4C3A51";
   effectsPageButton.style.backgroundColor = "#774360";
+  fxBuilderPageButton.style.backgroundColor = "#4C3A51";
 
   effectsPage.removeAttribute("hidden");
   settingsPage.setAttribute("hidden", "");
+  fxBuilderPage.setAttribute("hidden", "");
+
+  fxBuilderPageButton.removeAttribute("hidden", "");
 
   settingsActive = false;
   effectsActive = true;
+  fxBuilderActive = false;
+};
+
+const openFxBuilderPage = () => {
+  settingsPageButton.style.backgroundColor = "#4C3A51";
+  effectsPageButton.style.backgroundColor = "#4C3A51";
+  fxBuilderPageButton.style.backgroundColor = "#774360";
+
+  fxBuilderPage.removeAttribute("hidden");
+  settingsPage.setAttribute("hidden", "");
+  effectsPage.setAttribute("hidden", "");
+
+  settingsActive = false;
+  effectsActive = false;
+  fxBuilderActive = true;
 };
 
 // ----------------------------------------------------------------

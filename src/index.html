@@ -26,13 +26,14 @@
     <nav>
       <button id="settings-page-button">SETTINGS</button>
       <button id="effects-page-button">EFFECTS</button>
+      <button id="fxBuilder-page-button" hidden>BUILDER</button>
       <button id="exit-button" class="delete is-large"></button>
       <button id="minimize-button" class="delete is-large"></button>
     </nav>
 
     <div id="settings-contents">
       <div id="configure-port-div">
-        <h1 id="configure-text" class="title is-5">Configure Port:</h1>
+        <h1 id="page-title-text" class="title is-5">Configure Port:</h1>
         <div id="configure-buttons-div">
           <div class="dropdown">
             <div class="dropdown-trigger">
@@ -56,7 +57,7 @@
         </div>
       </div>
       <!-- <div id="port-status-div">
-        <h1 id="status-title-text" class="title is-5">Port Status:</h1>
+        <h1 id="page-title-text" class="title is-5">Port Status:</h1>
         <h2 id="status-text">Connected</h2>
       </div>-->
     </div>
@@ -69,7 +70,7 @@
       </div>
 
       <div id="effects-div">
-        <h1 id="choose-effect-text" class="title is-5">Choose Effect:</h1>
+        <h1 id="page-title-text" class="title is-5">Choose Effect:</h1>
         <div id="configure-effects-div">
           <div class="dropdown">
             <div class="dropdown-trigger">
@@ -108,6 +109,12 @@
             </label>
           </div>
         </div>
+      </div>
+    </div>
+
+    <div id="fxBuilder-contents" hidden>
+      <div id="fxBuilder-div">
+        <h1 id="page-title-text" class="title is-5">Effects Builder:</h1>
       </div>
     </div>
   </body>
