@@ -30,12 +30,7 @@ const writePixel = (writeX, writeY, width, height) => {
   ctx.fillRect(writeX * dotsMargin + newRowSpacing, writeY * dotsMargin, 6, 6);
 };
 
-module.exports = visualizeAudio = (msgArr) => {
-  console.log("hi");
-};
-
 drawMatrixBase(matrixWidth, matrixHeight);
-//for (i = 0; i < 32; i++) writePixel(i, 7, matrixWidth, matrixHeight);
 
 let setMatrix = true;
 

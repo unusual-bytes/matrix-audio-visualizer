@@ -182,3 +182,27 @@ nav {
   top: 10px;
   color: #ce9668;
 }
+
+#fxBuilder-div {
+  margin: auto;
+  width: 90%;
+  height: 580px;
+  border: 1px;
+  border-style: none;
+  background-color: #733f5c;
+  border-radius: 15px;
+  margin-top: 20px;
+}
+
+#fxBuilder-grid {
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(32, 1.5em);
+  grid-template-rows: repeat(8, 1.5em);
+}
+
+.fxBuilder-btn {
+  border: 0.2px solid;
+  border-radius: 2px;
+  background-color: white;
+}

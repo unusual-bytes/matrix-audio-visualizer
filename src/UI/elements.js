@@ -110,7 +110,6 @@ const dropdownContentEffects = document.getElementById("dropdown-content-fx");
 
 const dropdownSpanPorts = document.getElementById("dropdown-button-span-ports");
 const dropdownSpanEffects = document.getElementById("dropdown-button-span-fx");
-const statusText = document.getElementById("status-text");
 
 const connectButton = document.getElementById("connect-button");
 const applyButton = document.getElementById("apply-button");
@@ -142,12 +141,8 @@ async function setPorts() {
 }
 
 const connectToPort = () => {
-  if (selectedPort !== null) {
-    ipcRenderer.send("START-SERIAL", selectedPort);
-    statusText.textContent = handleSerial.hasConnected;
-  } else {
-    alert("No port selected");
-  }
+  if (selectedPort !== null) ipcRenderer.send("START-SERIAL", selectedPort);
+  else alert("No port selected");
 };
 
 for (const dropdown of dropdowns) {
