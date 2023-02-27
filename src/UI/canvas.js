@@ -37,31 +37,34 @@ let setMatrix = true;
 ipcRenderer.on("IS_FOCUS", (event, isFocused) => {
   setMatrix = isFocused;
 }),
-  ipcRenderer.on("SET_MATRIX", (event, data, upsideDown, fill) => {
-    if (setMatrix) {
-      let msg = [];
+  ipcRenderer.on(
+    "SET_MATRIX",
+    (event, data, isCustomEffect, upsideDown, fill) => {
+      if (setMatrix) {
+        let msg = [];
 
-      if (upsideDown) data.forEach((e) => msg.push(scale(e, 0, 1, 7, 0)));
-      else data.forEach((e) => msg.push(scale(e, 0, 1, 0, 7)));
+        if (upsideDown) data.forEach((e) => msg.push(scale(e, 0, 1, 7, 0)));
+        else data.forEach((e) => msg.push(scale(e, 0, 1, 0, 7)));
 
-      msg = msg.toString().replaceAll(",", "");
+        msg = msg.toString().replaceAll(",", "");
 
-      //console.log(msg);
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      drawMatrixBase(matrixWidth, matrixHeight);
-      for (x = 0; x < msg.length; x++) {
-        if (fill && upsideDown) {
-          for (y = msg[x]; y < 8; y++)
-            writePixel(x, 7 - y, matrixWidth, matrixHeight);
-        } else if (fill && !upsideDown) {
-          for (y = msg[x]; y >= 0; y--)
-            writePixel(x, 7 - y, matrixWidth, matrixHeight);
-        } else if (!fill) {
-          writePixel(x, 7 - msg[x], matrixWidth, matrixHeight);
+        //console.log(msg);
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        drawMatrixBase(matrixWidth, matrixHeight);
+        for (x = 0; x < msg.length; x++) {
+          if (fill && upsideDown) {
+            for (y = msg[x]; y < 8; y++)
+              writePixel(x, 7 - y, matrixWidth, matrixHeight);
+          } else if (fill && !upsideDown) {
+            for (y = msg[x]; y >= 0; y--)
+              writePixel(x, 7 - y, matrixWidth, matrixHeight);
+          } else if (!fill) {
+            writePixel(x, 7 - msg[x], matrixWidth, matrixHeight);
+          }
         }
       }
     }
-  });
+  );
 
 function scale(number, inMin, inMax, outMin, outMax) {
   return parseInt(

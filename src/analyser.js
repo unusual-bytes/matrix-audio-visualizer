@@ -58,5 +58,5 @@ function realtimeFrequencyData(frequencyArr) {
     frequencyArr.splice(frequencyArr.length - 2, 2);
   }
 
-  ipcRenderer.send("SEND-SERIAL", frequencyArr, upsideDown, fill);
+  ipcRenderer.send("SEND-SERIAL", frequencyArr, false, upsideDown, fill);
 }

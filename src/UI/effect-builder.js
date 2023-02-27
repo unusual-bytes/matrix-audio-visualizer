@@ -69,5 +69,7 @@ module.exports = {
     }
   },
 
-  applyEffect: function applyEffect() {},
+  applyEffect: function applyEffect() {
+    ipcRenderer.send("SEND-SERIAL", "test", true);
+  },
 };

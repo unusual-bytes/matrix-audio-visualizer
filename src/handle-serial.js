@@ -27,7 +27,11 @@ module.exports = {
     module.exports.hasConnected = handledSerial.toString();
   },
 
-  sendDataOverSerial: function sendDataOverSerial(dataArr, upsideDown) {
+  sendDataOverSerial: function sendDataOverSerial(
+    dataArr,
+    isCustomEffect,
+    upsideDown
+  ) {
     if (handledSerial) {
       if (global.port != null || global.port != undefined) {
         if (dataArr.every((v) => v === 0)) {

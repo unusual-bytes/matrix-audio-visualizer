@@ -43,9 +43,9 @@ ipcMain.on("START-SERIAL", (event, port) => {
   handleSerial.startSerial(port);
 });
 
-ipcMain.on("SEND-SERIAL", (event, data, upsideDown, fill) => {
-  handleSerial.sendDataOverSerial(data, upsideDown);
-  win.webContents.send("SET_MATRIX", data, upsideDown, fill);
+ipcMain.on("SEND-SERIAL", (event, data, isCustomEffect, upsideDown, fill) => {
+  handleSerial.sendDataOverSerial(data, isCustomEffect, upsideDown);
+  win.webContents.send("SET_MATRIX", data, isCustomEffect, upsideDown, fill);
 });
 
 ipcMain.on(
