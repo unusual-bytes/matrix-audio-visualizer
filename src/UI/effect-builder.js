@@ -19,8 +19,8 @@ function addButtonsToGrid() {
 
     if (i % 8 == 0) toggleColorThroughMatrices = !toggleColorThroughMatrices;
 
-    if (toggleColorThroughMatrices) btn.dataset.defaultColor = "white";
-    else btn.dataset.defaultColor = "rgb(220,220,230)";
+    if (toggleColorThroughMatrices) btn.dataset.defaultColor = "rgb(122,67,98)";
+    else btn.dataset.defaultColor = "rgb(133,75,108)";
 
     btn.style.backgroundColor = btn.dataset.defaultColor;
 
