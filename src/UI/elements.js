@@ -214,4 +214,5 @@ const effectBuilder = require("./UI/effect-builder.js");
 const fxBuilderApply = document.getElementById("fxBuilder-apply-button");
 const fxBuilderClear = document.getElementById("fxBuilder-clear-button");
 
+fxBuilderApply.addEventListener("click", () => effectBuilder.applyEffect());
 fxBuilderClear.addEventListener("click", () => effectBuilder.clearAllPixels());

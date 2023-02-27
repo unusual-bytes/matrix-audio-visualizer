@@ -52,6 +52,7 @@ function addButtonsToGrid() {
 let placePixels = (btn) => {
   btn.style.backgroundColor = "red";
   btn.dataset.isUsed = 1;
+  console.log(btn.dataset.coordinate);
 };
 
 let deletePixels = (btn) => {
@@ -70,6 +71,12 @@ module.exports = {
   },
 
   applyEffect: function applyEffect() {
-    ipcRenderer.send("SEND-SERIAL", "test", true);
+    let btnArray = document.getElementsByClassName("fxBuilder-btn");
+    let dataArr = [];
+    Array.from(btnArray).forEach((e) => dataArr.push(e.dataset.isUsed));
+
+    let data = dataArr.join("");
+
+    ipcRenderer.send("SEND-SERIAL", dataArr, true);
   },
 };
