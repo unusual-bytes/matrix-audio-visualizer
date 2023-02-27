@@ -151,10 +151,17 @@ nav {
 }
 
 #connect-button,
-#apply-button {
+#apply-button,
+#fxBuilder-apply-button,
+#fxBuilder-clear-button {
   background-color: #4c3a51;
   color: #e7ab79;
   border: none;
+}
+
+#fxBuilder-apply-button,
+#fxBuilder-clear-button {
+  margin-top: 50px;
 }
 
 #effects-contents,
@@ -186,7 +193,7 @@ nav {
 #fxBuilder-div {
   margin: auto;
   width: 90%;
-  height: 580px;
+  height: 380px;
   border: 1px;
   border-style: none;
   background-color: #733f5c;
@@ -197,12 +204,11 @@ nav {
 #fxBuilder-grid {
   margin: auto;
   display: grid;
-  grid-template-columns: repeat(32, 1.5em);
-  grid-template-rows: repeat(8, 1.5em);
+  grid-template-columns: repeat(32, 1.4em);
+  grid-template-rows: repeat(8, 1.4em);
 }
 
 .fxBuilder-btn {
-  border: 0.2px solid;
-  border-radius: 2px;
-  background-color: white;
+  border: 0.1px solid;
+  border-radius: 3px;
 }

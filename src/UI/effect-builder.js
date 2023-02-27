@@ -5,47 +5,69 @@ const columns = 32,
   rows = 8;
 
 let holdLeftMouseButton,
-  holdRightMouseButton = false;
+  holdRightMouseButton,
+  toggleColorThroughMatrices = false;
 
-for (i = 0; i < columns * rows; i++) {
-  let btn = document.createElement("button");
-  btn.className = "fxBuilder-btn";
-  btn.dataset.coordinate = i;
-  grid.appendChild(btn);
+addButtonsToGrid();
 
-  btn.onmousedown = function (event) {
-    if (event.button == 0) {
-      placePixels(btn);
-      holdLeftMouseButton = true;
-    }
+function addButtonsToGrid() {
+  for (i = 0; i < columns * rows; i++) {
+    let btn = document.createElement("button");
+    btn.className = "fxBuilder-btn";
+    btn.dataset.coordinate = i;
+    btn.dataset.isUsed = 0;
 
-    if (event.button == 2) {
-      deletePixels(btn);
-      holdRightMouseButton = true;
-    }
-  };
+    if (i % 8 == 0) toggleColorThroughMatrices = !toggleColorThroughMatrices;
 
-  btn.onmouseup = function (event) {
-    if (event.button == 0) holdLeftMouseButton = false;
+    if (toggleColorThroughMatrices) btn.dataset.defaultColor = "white";
+    else btn.dataset.defaultColor = "rgb(220,220,230)";
 
-    if (event.button == 2) holdRightMouseButton = false;
-  };
+    btn.style.backgroundColor = btn.dataset.defaultColor;
 
-  btn.onmouseenter = function (event) {
-    if (holdLeftMouseButton) {
-      placePixels(btn);
-    }
+    grid.appendChild(btn);
 
-    if (holdRightMouseButton) {
-      deletePixels(btn);
-    }
-  };
+    window.onmousedown = function (event) {
+      if (event.button == 0) holdLeftMouseButton = true;
+      if (event.button == 2) holdRightMouseButton = true;
+    };
+
+    window.onmouseup = function (event) {
+      if (event.button == 0) holdLeftMouseButton = false;
+      if (event.button == 2) holdRightMouseButton = false;
+    };
+
+    btn.onmousedown = function (event) {
+      if (event.button == 0) placePixels(btn);
+      if (event.button == 2) deletePixels(btn);
+    };
+
+    btn.onmouseenter = function (event) {
+      if (holdLeftMouseButton) placePixels(btn);
+
+      if (holdRightMouseButton) deletePixels(btn);
+    };
+  }
 }
 
-function placePixels(btn) {
+let placePixels = (btn) => {
   btn.style.backgroundColor = "red";
-}
+  btn.dataset.isUsed = 1;
+};
 
-function deletePixels(btn) {
-  btn.style.backgroundColor = "white";
-}
+let deletePixels = (btn) => {
+  btn.style.backgroundColor = btn.dataset.defaultColor;
+  btn.dataset.isUsed = 0;
+};
+
+module.exports = {
+  clearAllPixels: function clearAllPixels() {
+    let btnArray = document.getElementsByClassName("fxBuilder-btn");
+
+    for (i = 0; i < btnArray.length; i++) {
+      btnArray[i].style.backgroundColor = btnArray[i].dataset.defaultColor;
+      btnArray[i].dataset.isUsed = 0;
+    }
+  },
+
+  applyEffect: function applyEffect() {},
+};

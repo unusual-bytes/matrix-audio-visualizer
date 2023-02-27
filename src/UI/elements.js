@@ -206,3 +206,12 @@ function applyEffects() {
     fillCheckbox.checked
   );
 }
+
+// EFFECT BUILDER
+
+const effectBuilder = require("./UI/effect-builder.js");
+
+const fxBuilderApply = document.getElementById("fxBuilder-apply-button");
+const fxBuilderClear = document.getElementById("fxBuilder-clear-button");
+
+fxBuilderClear.addEventListener("click", () => effectBuilder.clearAllPixels());
