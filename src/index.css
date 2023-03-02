@@ -161,7 +161,7 @@ nav {
 
 #fxBuilder-apply-button,
 #fxBuilder-clear-button {
-  margin-top: 50px;
+  margin-top: 10px;
 }
 
 #effects-contents,
@@ -212,4 +212,21 @@ nav {
   border: 0.1px solid;
   border-radius: 2px;
   border-color: #26151e;
+}
+
+#fxBuilder-animationControls {
+  margin-left: 85%;
+  margin-top: 10px;
+  color: #ce9668;
+  font-size: 23px;
+}
+
+#fxBuilder-frameNextBtn,
+#fxBuilder-framePreviousBtn {
+  background-color: #4c3a51;
+  color: #e7ab79;
+  font-size: 20px;
+  width: 36px;
+  height: 34px;
+  border: none;
 }

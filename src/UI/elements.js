@@ -216,3 +216,17 @@ const fxBuilderClear = document.getElementById("fxBuilder-clear-button");
 
 fxBuilderApply.addEventListener("click", () => effectBuilder.applyEffect());
 fxBuilderClear.addEventListener("click", () => effectBuilder.clearAllPixels());
+
+// frames
+
+const nextFrameBtn = document.getElementById("fxBuilder-frameNextBtn");
+const previousFrameBtn = document.getElementById("fxBuilder-framePreviousBtn");
+const currentFrameText = document.getElementById("fxBuilder-currentFrameText");
+
+nextFrameBtn.addEventListener("click", () => nextFrame());
+//previousFrameBtn.addEventListener("click", () => effectBuilder.applyEffect());
+
+function nextFrame() {
+  effectBuilder.nextFrame();
+  currentFrameText.textContent = effectBuilder.getCurrentFrame();
+}
