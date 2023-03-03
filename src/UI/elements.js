@@ -223,4 +223,4 @@ const nextFrameBtn = document.getElementById("fxBuilder-frameNextBtn");
 const previousFrameBtn = document.getElementById("fxBuilder-framePreviousBtn");
 
 nextFrameBtn.addEventListener("click", () => effectBuilder.nextFrame());
-//previousFrameBtn.addEventListener("click", () => effectBuilder.applyEffect());
+previousFrameBtn.addEventListener("click", () => effectBuilder.previousFrame());

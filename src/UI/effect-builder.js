@@ -82,6 +82,16 @@ module.exports = {
     ipcRenderer.send("SEND-SERIAL", dataArr, true);
   },
 
+  drawFromArray: function drawFromArray(dataArr) {
+    if (dataArr != undefined) {
+      let btnArray = document.getElementsByClassName("fxBuilder-btn");
+
+      for (i = 0; i < dataArr.length; i++) {
+        if (dataArr[i] == 1) placePixels(btnArray[i]);
+      }
+    }
+  },
+
   nextFrame: function nextFrame() {
     // get current frame
     let currentBtnArray = document.getElementsByClassName("fxBuilder-btn");
@@ -89,10 +99,34 @@ module.exports = {
     Array.from(currentBtnArray).forEach((e) => dataArr.push(e.dataset.isUsed));
     // save current frame
     frames[currentFrame] = dataArr;
+    // switch to next frame
     currentFrame++;
-    // clear matrix
+    // clear matrix and draw next frame
     this.clearAllPixels();
+    this.drawFromArray(frames[currentFrame]);
+    this.updateFrameText();
+  },
 
+  previousFrame: function previousFrame() {
+    if (currentFrame > 0) {
+      // get current frame
+      let currentBtnArray = document.getElementsByClassName("fxBuilder-btn");
+      let dataArr = [];
+      Array.from(currentBtnArray).forEach((e) =>
+        dataArr.push(e.dataset.isUsed)
+      );
+      // save current frame
+      frames[currentFrame] = dataArr;
+      // restore previous frame from array
+      // display on matrix
+      currentFrame--;
+      this.clearAllPixels();
+      this.drawFromArray(frames[currentFrame]);
+      this.updateFrameText();
+    }
+  },
+
+  updateFrameText: function updateFrameText() {
     document.getElementById("fxBuilder-currentFrameText").textContent =
       currentFrame;
   },
