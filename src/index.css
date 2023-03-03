@@ -215,7 +215,7 @@ nav {
 }
 
 #fxBuilder-animationControls {
-  margin-left: 85%;
+  margin-left: 55%;
   margin-top: 10px;
   color: #ce9668;
   font-size: 23px;
@@ -229,4 +229,11 @@ nav {
   width: 36px;
   height: 34px;
   border: none;
+}
+
+#fxBuilder-framePreviousBtn,
+#fxBuilder-currentFrameText,
+#fxBuilder-frameNextBtn {
+  float: right;
+  margin: 2px;
 }

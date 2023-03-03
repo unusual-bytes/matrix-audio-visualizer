@@ -55,7 +55,6 @@ function addButtonsToGrid() {
 let placePixels = (btn) => {
   btn.style.backgroundColor = "red";
   btn.dataset.isUsed = 1;
-  console.log(btn.dataset.coordinate);
 };
 
 let deletePixels = (btn) => {
@@ -93,9 +92,8 @@ module.exports = {
     currentFrame++;
     // clear matrix
     this.clearAllPixels();
-  },
 
-  getCurrentFrame: function getCurrentFrame() {
-    return currentFrame;
+    document.getElementById("fxBuilder-currentFrameText").textContent =
+      currentFrame;
   },
 };
