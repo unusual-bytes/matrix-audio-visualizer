@@ -153,6 +153,7 @@ nav {
 #connect-button,
 #apply-button,
 #fxBuilder-apply-button,
+#fxBuilder-applyAnim-button,
 #fxBuilder-clear-button {
   background-color: #4c3a51;
   color: #e7ab79;
@@ -160,6 +161,7 @@ nav {
 }
 
 #fxBuilder-apply-button,
+#fxBuilder-applyAnim-button,
 #fxBuilder-clear-button {
   margin-top: 10px;
 }
@@ -233,7 +235,18 @@ nav {
 
 #fxBuilder-framePreviousBtn,
 #fxBuilder-currentFrameText,
-#fxBuilder-frameNextBtn {
+#fxBuilder-frameNextBtn,
+#fxBuilder-delay-input,
+#fxBuilder-delay-text {
   float: right;
   margin: 2px;
+}
+
+#fxBuilder-delay-input {
+  width: 100px;
+  height: 32px;
+}
+
+#fxBuilder-delay-text {
+  font-size: 16px;
 }

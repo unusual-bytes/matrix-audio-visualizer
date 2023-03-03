@@ -212,9 +212,17 @@ function applyEffects() {
 const effectBuilder = require("./UI/effect-builder.js");
 
 const fxBuilderApply = document.getElementById("fxBuilder-apply-button");
+const fxBuilderApplyAnim = document.getElementById(
+  "fxBuilder-applyAnim-button"
+);
 const fxBuilderClear = document.getElementById("fxBuilder-clear-button");
 
-fxBuilderApply.addEventListener("click", () => effectBuilder.applyEffect());
+fxBuilderApply.addEventListener("click", () =>
+  effectBuilder.applyEffect(false)
+);
+fxBuilderApplyAnim.addEventListener("click", () =>
+  effectBuilder.applyEffect(true)
+);
 fxBuilderClear.addEventListener("click", () => effectBuilder.clearAllPixels());
 
 // frames

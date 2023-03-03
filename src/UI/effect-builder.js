@@ -8,7 +8,8 @@ let holdLeftMouseButton,
   holdRightMouseButton,
   toggleColorThroughMatrices = false;
 
-let currentFrame = 0;
+let currentFrame = 0,
+  playAnimFrame = 0;
 let frames = [];
 
 addButtonsToGrid();
@@ -72,14 +73,28 @@ module.exports = {
     }
   },
 
-  applyEffect: function applyEffect() {
+  applyEffect: function applyEffect(isAnimation) {
     let btnArray = document.getElementsByClassName("fxBuilder-btn");
     let dataArr = [];
     Array.from(btnArray).forEach((e) => dataArr.push(e.dataset.isUsed));
 
-    let data = dataArr.join("");
+    if (!isAnimation) ipcRenderer.send("SEND-SERIAL", dataArr, true);
+    else {
+      const delay = parseInt(
+        document.getElementById("fxBuilder-delay-input").value
+      );
+      // TODO: stop the animation when applying something else
+      // TODO: stop audio visualizer when applying custom effects
+      // TODO: better frontend
+      setInterval(this.playAnimation, delay);
+    }
+  },
 
-    ipcRenderer.send("SEND-SERIAL", dataArr, true);
+  playAnimation: function playAnimation() {
+    // TODO: this doesnt reach last frame
+    if (playAnimFrame == frames.length) playAnimFrame = 0;
+    ipcRenderer.send("SEND-SERIAL", frames[playAnimFrame], true);
+    playAnimFrame++;
   },
 
   drawFromArray: function drawFromArray(dataArr) {
