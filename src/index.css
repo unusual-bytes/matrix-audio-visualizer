@@ -56,6 +56,24 @@ nav {
   color: #4c3a51a9;
 }
 
+#checkboxes-div {
+  position: relative;
+  top: 35%;
+  margin-left: 20px;
+  width: 100%;
+  color: #ebe0e0;
+}
+
+#always-connect-checkbox-div,
+#on-startup-checkbox-div {
+  position: relative;
+}
+
+#always-connect-label,
+#on-startup-label {
+  margin-left: 5px;
+}
+
 #settings-page-button,
 #effects-page-button,
 #fxBuilder-page-button {
@@ -112,7 +130,8 @@ nav {
   margin-top: 20px;
 }
 
-#effects-div {
+#effects-div,
+#configure-port-div {
   height: 250px;
 }
 
