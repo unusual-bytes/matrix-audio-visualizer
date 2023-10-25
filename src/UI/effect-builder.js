@@ -81,14 +81,16 @@ module.exports = {
 
     Array.from(btnArray).forEach((e) => dataArr.push(e.dataset.isUsed));
 
+    ipcRenderer.send("VISUALIZER-HAS-PLAY-PRIORITY", false);
+
     if (!isAnimation) ipcRenderer.send("SEND-SERIAL", dataArr, true);
     else {
       const delay = parseInt(
         document.getElementById("fxBuilder-delay-input").value
       );
-      // TODO: stop the animation when applying something else
-      // TODO: stop audio visualizer when applying custom effects
       // TODO: better frontend
+      /* TODO: overwrite animation (on visualizer tab) or overwrite visualizer (on effects builder tab) checkbox -
+          display the animation/frame set by the user only when analyser detects no audio playing. if audio plays it would overwrite any animation/frame */
       playAnimationIntervalId = setInterval(this.playAnimation, delay);
     }
   },

@@ -45,7 +45,7 @@ ipcMain.on("START-SERIAL", (event, port) => {
 
 ipcMain.on("SEND-SERIAL", (event, data, isCustomEffect, upsideDown, fill) => {
   handleSerial.sendDataOverSerial(data, isCustomEffect, upsideDown);
-  win.webContents.send("SET_MATRIX", data, isCustomEffect, upsideDown, fill);
+  if(!isCustomEffect) win.webContents.send("SET_MATRIX", data, isCustomEffect, upsideDown, fill);
 });
 
 ipcMain.on(
@@ -54,6 +54,10 @@ ipcMain.on(
     handleSerial.setVisualizerSettings(controlGlow, upsideDown, fill);
   }
 );
+
+ipcMain.on("VISUALIZER-HAS-PLAY-PRIORITY", (event, visualizerHasPriority) => {
+  handleSerial.setPlayPriority(visualizerHasPriority);
+});
 
 ipcMain.on("CLOSE-APP", (event) => {
   win.close();

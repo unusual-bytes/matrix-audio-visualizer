@@ -3,6 +3,7 @@ const { SerialPort, ReadlineParser, ipcRenderer } = require("serialport");
 var parser = null;
 let isAudioQuiet,
   handledSerial = false;
+let visualizerHasPriority = true;
 
 module.exports = {
   startSerial: function startSerial(portPath) {
@@ -34,51 +35,51 @@ module.exports = {
   ) {
     if (handledSerial) {
       if (global.port != null || global.port != undefined) {
-        if (isCustomEffect) {
+        if (isCustomEffect && !visualizerHasPriority) {
           global.port.write(`${dataArr.reverse().join("")}\n`);
+        } else if(visualizerHasPriority){
+        if (dataArr.every((v) => v === 0)) {
+          if (!isAudioQuiet) global.port.write(`0`);
+          isAudioQuiet = true;
         } else {
-          if (dataArr.every((v) => v === 0)) {
-            if (!isAudioQuiet) global.port.write(`0`);
-            isAudioQuiet = true;
-          } else {
-            let msg = [];
+          let msg = [];
 
-            // if using LEDMatrixDriver
+          // if using LEDMatrixDriver
 
-            if (upsideDown) {
-              dataArr
+          if (upsideDown) {
+            dataArr
                 .slice()
                 .reverse()
                 .forEach((e) => msg.push(scale(e, 0, 1, 7, 0)));
-            } else {
-              dataArr
+          } else {
+            dataArr
                 .slice()
                 .reverse()
                 .forEach((e) => msg.push(scale(e, 0, 1, 0, 7)));
-            }
-
-            // if using MD_MAX72xx
-            // dataArr.forEach(e => msg.push(scale(e, 0, 255, 0, 7)))
-
-            let averageAudioLevel = (isUpsideDown) => {
-              if (isUpsideDown)
-                return (averageAudioLevel = parseInt(
-                  msg.reduce((a, b) => a + scale(b, 0, 7, 7, 0), 0) / msg.length
-                ));
-              else
-                return (averageAudioLevel = parseInt(
-                  msg.reduce((a, b) => a + b, 0) / msg.length
-                ));
-            };
-
-            if (global.controlGlow)
-              global.port.write(`b${averageAudioLevel(upsideDown)}\n`);
-
-            msg = msg.toString().replaceAll(",", "");
-            global.port.write(`${msg}\n`); // TODO: send data in bytes instead
-
-            isAudioQuiet = false;
           }
+
+          // if using MD_MAX72xx
+          // dataArr.forEach(e => msg.push(scale(e, 0, 255, 0, 7)))
+
+          let averageAudioLevel = (isUpsideDown) => {
+            if (isUpsideDown)
+              return (averageAudioLevel = parseInt(
+                  msg.reduce((a, b) => a + scale(b, 0, 7, 7, 0), 0) / msg.length
+              ));
+            else
+              return (averageAudioLevel = parseInt(
+                  msg.reduce((a, b) => a + b, 0) / msg.length
+              ));
+          };
+
+          if (global.controlGlow)
+            global.port.write(`b${averageAudioLevel(upsideDown)}\n`);
+
+          msg = msg.toString().replaceAll(",", "");
+          global.port.write(`${msg}\n`); // TODO: send data in bytes instead
+
+          isAudioQuiet = false;
+        }
         }
       } else {
         console.log("waiting for global.port");
@@ -114,6 +115,10 @@ module.exports = {
   getAvailablePorts: (getAvailablePorts = () => {
     return SerialPort.list();
   }),
+
+  setPlayPriority: function setPlayPriority(tVisualizerHasPriority) {
+    visualizerHasPriority = tVisualizerHasPriority;
+  },
 };
 
 function checkForDataReceive() {

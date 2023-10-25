@@ -205,6 +205,8 @@ function applyEffects() {
     upsideDownCheckbox.checked,
     fillCheckbox.checked
   );
+
+  ipcRenderer.send("VISUALIZER-HAS-PLAY-PRIORITY", true);
 }
 
 // EFFECT BUILDER
