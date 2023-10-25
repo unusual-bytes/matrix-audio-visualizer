@@ -11,6 +11,7 @@ let holdLeftMouseButton,
 let currentFrame = 0,
   playAnimFrame = 0;
 let frames = [];
+var playAnimationIntervalId;
 
 addButtonsToGrid();
 
@@ -76,6 +77,8 @@ module.exports = {
   applyEffect: function applyEffect(isAnimation) {
     let btnArray = document.getElementsByClassName("fxBuilder-btn");
     let dataArr = [];
+    clearInterval(playAnimationIntervalId);
+
     Array.from(btnArray).forEach((e) => dataArr.push(e.dataset.isUsed));
 
     if (!isAnimation) ipcRenderer.send("SEND-SERIAL", dataArr, true);
@@ -86,7 +89,7 @@ module.exports = {
       // TODO: stop the animation when applying something else
       // TODO: stop audio visualizer when applying custom effects
       // TODO: better frontend
-      setInterval(this.playAnimation, delay);
+      playAnimationIntervalId = setInterval(this.playAnimation, delay);
     }
   },
 

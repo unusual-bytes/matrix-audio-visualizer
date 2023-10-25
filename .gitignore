@@ -128,3 +128,8 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+.idea/discord.xml
+.idea/matrix-audio-visualizer.iml
+.idea/modules.xml
+.idea/vcs.xml
+.idea/workspace.xml
