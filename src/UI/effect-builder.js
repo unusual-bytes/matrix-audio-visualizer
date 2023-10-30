@@ -119,14 +119,12 @@ module.exports = {
   nextFrame: function nextFrame() {
     // get current frame
     let currentBtnArray = document.getElementsByClassName("fxBuilder-btn");
-    let dataArr = [], usedDataArr = [];
+    let dataArr = [], drawGuideArr = [];
     Array.from(currentBtnArray).forEach((e) => dataArr.push(e.dataset.isUsed));
 
     Array.from(currentBtnArray).forEach((e) => {
-      if(e.dataset.isUsed == 1) usedDataArr.push(e)
-      console.log(e.dataset.isUsed);
+      if(e.dataset.isUsed == 1) drawGuideArr.push(e)
     });
-
 
     // save current frame
     frames[currentFrame] = dataArr;
@@ -136,7 +134,7 @@ module.exports = {
     this.clearAllPixels();
     this.drawFromArray(frames[currentFrame]);
     this.updateFrameText();
-    usedDataArr.forEach((e) => e.style.borderColor = "red");
+    drawGuideArr.forEach((e) => e.style.borderColor = "red");
   },
 
   previousFrame: function previousFrame() {
