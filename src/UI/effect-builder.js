@@ -72,6 +72,7 @@ module.exports = {
 
     for (i = 0; i < btnArray.length; i++) {
       btnArray[i].style.transition = 'all .5s ease';
+      btnArray[i].style.borderColor = "#26151e";
       btnArray[i].style.backgroundColor = btnArray[i].dataset.defaultColor;
       btnArray[i].dataset.isUsed = 0;
     }
@@ -118,8 +119,15 @@ module.exports = {
   nextFrame: function nextFrame() {
     // get current frame
     let currentBtnArray = document.getElementsByClassName("fxBuilder-btn");
-    let dataArr = [];
+    let dataArr = [], usedDataArr = [];
     Array.from(currentBtnArray).forEach((e) => dataArr.push(e.dataset.isUsed));
+
+    Array.from(currentBtnArray).forEach((e) => {
+      if(e.dataset.isUsed == 1) usedDataArr.push(e)
+      console.log(e.dataset.isUsed);
+    });
+
+
     // save current frame
     frames[currentFrame] = dataArr;
     // switch to next frame
@@ -128,6 +136,7 @@ module.exports = {
     this.clearAllPixels();
     this.drawFromArray(frames[currentFrame]);
     this.updateFrameText();
+    usedDataArr.forEach((e) => e.style.borderColor = "red");
   },
 
   previousFrame: function previousFrame() {
