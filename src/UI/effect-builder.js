@@ -55,11 +55,13 @@ function addButtonsToGrid() {
 }
 
 let placePixels = (btn) => {
+  btn.style.transition = 'all 0s ease'; // instantly place pixels (no visual animation)
   btn.style.backgroundColor = "red";
   btn.dataset.isUsed = 1;
 };
 
 let deletePixels = (btn) => {
+  btn.style.transition = 'all 0s ease'; // instantly delete pixels (no visual animation)
   btn.style.backgroundColor = btn.dataset.defaultColor;
   btn.dataset.isUsed = 0;
 };
@@ -69,6 +71,7 @@ module.exports = {
     let btnArray = document.getElementsByClassName("fxBuilder-btn");
 
     for (i = 0; i < btnArray.length; i++) {
+      btnArray[i].style.transition = 'all .5s ease';
       btnArray[i].style.backgroundColor = btnArray[i].dataset.defaultColor;
       btnArray[i].dataset.isUsed = 0;
     }
