@@ -243,10 +243,13 @@ nav {
 }
 
 #fxBuilder-animationControls {
-  margin-left: 55%;
+  position:absolute;
+  display:grid;
+  margin-left: 57%;
   margin-top: 10px;
   color: #ce9668;
   font-size: 23px;
+  text-align: right;
 }
 
 #fxBuilder-frameNextBtn,
@@ -274,5 +277,7 @@ nav {
 }
 
 #fxBuilder-delay-text {
+  display: inline-block;
+  float:none;
   font-size: 16px;
 }

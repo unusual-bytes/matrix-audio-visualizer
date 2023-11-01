@@ -122,23 +122,30 @@
       <div id="fxBuilder-div">
         <h1 id="page-title-text" class="title is-5">Effects Builder:</h1>
         <div id="fxBuilder-grid"></div>
+
         <div id="fxBuilder-animationControls">
-          <button id="fxBuilder-frameNextBtn" class="button is-primary">
-            >
-          </button>
-          <h1 id="fxBuilder-currentFrameText">0</h1>
-          <button id="fxBuilder-framePreviousBtn" class="button is-primary">
-            <
-          </button>
+        <div>
+          <h1 id="fxBuilder-delay-text">Frame</h1>
+        <button id="fxBuilder-frameNextBtn" class="button is-primary">
+          >
+        </button>
+        <h1 id="fxBuilder-currentFrameText">0</h1>
+        <button id="fxBuilder-framePreviousBtn" class="button is-primary">
+          <
+        </button>
+        </div>
+          <div>
           <h1 id="fxBuilder-delay-text">Time between frames</h1>
           <input
-            id="fxBuilder-delay-input"
-            class="input is-rounded"
-            type="number"
-            min="0"
-            placeholder="(in ms)"
+                  id="fxBuilder-delay-input"
+                  class="input is-rounded"
+                  type="number"
+                  min="0"
+                  placeholder="(in ms)"
           />
+          </div>
         </div>
+
         <button id="fxBuilder-apply-button" class="button is-primary">
           APPLY
         </button>
@@ -148,6 +155,7 @@
         <button id="fxBuilder-clear-button" class="button is-primary">
           CLEAR FRAME
         </button>
+
       </div>
     </div>
   </body>
