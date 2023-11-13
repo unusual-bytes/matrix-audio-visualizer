@@ -180,16 +180,29 @@ nav {
 #apply-button,
 #fxBuilder-apply-button,
 #fxBuilder-applyAnim-button,
-#fxBuilder-clear-button {
+#fxBuilder-clear-button,
+#fxBuilder-frameDuplicateBtn {
   background-color: #4c3a51;
   color: #e7ab79;
   border: none;
 }
 
+#fxBuilder-buttons {
+  display: grid;
+  grid-template-columns: 20% 20%;
+  grid-column-gap: 20px;
+}
+
 #fxBuilder-apply-button,
 #fxBuilder-applyAnim-button,
-#fxBuilder-clear-button {
+#fxBuilder-clear-button,
+#fxBuilder-frameDuplicateBtn {
   margin-top: 10px;
+}
+
+#fxBuilder-clear-button,
+#fxBuilder-frameDuplicateBtn {
+  background-color: #3f2f44;
 }
 
 #effects-contents,

@@ -156,6 +156,21 @@ module.exports = {
     }
   },
 
+  duplicateFrame: function duplicateFrame () {
+    // get current frame
+    let currentBtnArray = document.getElementsByClassName("fxBuilder-btn");
+    let dataArr = [];
+    Array.from(currentBtnArray).forEach((e) => dataArr.push(e.dataset.isUsed));
+
+    // save current frame
+    frames[currentFrame] = dataArr;
+    // switch to next frame (don't clear matrix)
+    this.drawFromArray(frames[currentFrame]);
+    currentFrame++;
+    this.updateFrameText();
+    drawGuideArr.forEach((e) => e.style.borderColor = "red");
+  },
+
   updateFrameText: function updateFrameText() {
     document.getElementById("fxBuilder-currentFrameText").textContent =
       currentFrame;

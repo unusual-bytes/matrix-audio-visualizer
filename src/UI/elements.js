@@ -231,6 +231,8 @@ fxBuilderClear.addEventListener("click", () => effectBuilder.clearAllPixels());
 
 const nextFrameBtn = document.getElementById("fxBuilder-frameNextBtn");
 const previousFrameBtn = document.getElementById("fxBuilder-framePreviousBtn");
+const duplicateFrameBtn = document.getElementById("fxBuilder-frameDuplicateBtn");
 
 nextFrameBtn.addEventListener("click", () => effectBuilder.nextFrame());
 previousFrameBtn.addEventListener("click", () => effectBuilder.previousFrame());
+duplicateFrameBtn.addEventListener("click", () => effectBuilder.duplicateFrame());
