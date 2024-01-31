@@ -1,7 +1,9 @@
 ﻿## Matrix Visualizer
 Electron app for visualizing audio data to a Max7219 (or simillar) LED Matrix over serial communication
 
+<img src="https://github.com/unusual-bytes/matrix-audio-visualizer/assets/28684850/b76de28b-0c36-41e3-b798-3dd527c2ab2a" alt="3d" width="600"/>
 <img src="https://github.com/unusual-bytes/matrix-audio-visualizer/assets/28684850/70e020d8-bb2f-4fe3-aadc-a3ece830e763" alt="ui" width="600"/>
+
 
 ## Features
 - Low latency serial communication
