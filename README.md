@@ -29,3 +29,5 @@ Windows
 
 ## TODO
 Linux support
+
+<img src="https://github.com/unusual-bytes/matrix-audio-visualizer/assets/28684850/65831929-57a9-4ae7-bab0-cec9ad5cd77a" alt="3d" width="600"/>
