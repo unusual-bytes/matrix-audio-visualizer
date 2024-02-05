@@ -9,7 +9,7 @@ Electron app for visualizing audio data to a Max7219 (or simillar) LED Matrix ov
 - Low latency serial communication
 - Analyzation and visualization of audio data
 - Visualization of user-drawn data (Custom Effects Builder)
-- Pre-programmed effects (⏰Time, 🐍Snake Game, 🚶Animations...)
+- Pre-programmed effects
 - Interactive user interface
 
 
